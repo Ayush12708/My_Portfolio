@@ -1,3 +1,8 @@
 #!/bin/bash
-pip install -r requirements.txt
-python3.12 manage.py collectstatic --noinput --clear
+echo "===> Installing dependencies..."
+python3 -m pip install -r requirements.txt
+
+echo "===> Running collectstatic..."
+python3 manage.py collectstatic --noinput --clear
+
+echo "===> Build finished!"

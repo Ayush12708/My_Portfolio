@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'myportfolio.wsgi.application'
 # Database Configuration (Switch between local SQLite and AWS RDS)
 DB_HOST = os.getenv('DB_HOST')
 
-if DB_HOST:
+if DB_HOST and all([os.getenv('DB_NAME'), os.getenv('DB_USER'), os.getenv('DB_PASSWORD')]):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
