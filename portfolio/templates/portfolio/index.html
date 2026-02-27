@@ -152,12 +152,21 @@
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
             {% for cert in certifications %}
             <div
-                style="background: var(--card-bg); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color);">
-                <h3 style="color: #fff; margin-bottom: 0.5rem;">{{ cert.title }}</h3>
-                <p style="color: var(--accent-color); font-weight: 600;">{{ cert.issuer }}</p>
-                {% if cert.date_issued %}
-                <p style="color: var(--text-secondary); font-size: 0.9rem;">Issued: {{ cert.date_issued|date:"M Y" }}
-                </p>
+                style="background: var(--card-bg); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color); position: relative; transition: 0.3s; height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <h3 style="color: #fff; margin-bottom: 0.5rem;">{{ cert.title }}</h3>
+                    <p style="color: var(--accent-color); font-weight: 600;">{{ cert.issuer }}</p>
+                    {% if cert.date_issued %}
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Issued: {{ cert.date_issued|date:"M Y"
+                        }}
+                    </p>
+                    {% endif %}
+                </div>
+                {% if cert.credential_url %}
+                <a href="{{ cert.credential_url }}" target="_blank"
+                    style="display: inline-block; margin-top: 1rem; color: var(--accent-color); text-decoration: none; font-size: 0.9rem; font-weight: 600;">
+                    Verify Credential &rarr;
+                </a>
                 {% endif %}
             </div>
             {% empty %}
@@ -178,6 +187,12 @@
                     <h3>{{ achievement.title }}</h3>
                     <h4 style="color: var(--text-secondary); margin-bottom: 1rem;">{{ achievement.organization }}</h4>
                     <p>{{ achievement.description|linebreaks }}</p>
+                    {% if achievement.credential_url %}
+                    <a href="{{ achievement.credential_url }}" target="_blank"
+                        style="display: inline-block; margin-top: 0.5rem; color: var(--accent-color); text-decoration: none; font-weight: 600;">
+                        View Certificate &rarr;
+                    </a>
+                    {% endif %}
                 </div>
             </div>
             {% empty %}

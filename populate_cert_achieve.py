@@ -16,19 +16,22 @@ Achievement.objects.all().delete()
 Certification.objects.create(
     title='Java',
     issuer='HackerRank',
-    date_issued=date(2025, 11, 1)
+    date_issued=date(2025, 11, 1),
+    credential_url='https://www.hackerrank.com/certificates/ayush_java'
 )
 
 Certification.objects.create(
     title='Fundamentals of Network Communication',
     issuer='Coursera',
-    date_issued=date(2024, 9, 1)
+    date_issued=date(2024, 9, 1),
+    credential_url='https://www.coursera.org/verify/network-comm'
 )
 
 Certification.objects.create(
     title='Legacy Responsive Web Design V8',
     issuer='freeCodeCamp',
-    date_issued=date(2023, 9, 1)
+    date_issued=date(2023, 9, 1),
+    credential_url='https://www.freecodecamp.org/certification/ayush/responsive-web-design'
 )
 
 # Populate Achievements
