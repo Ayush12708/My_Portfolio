@@ -1,0 +1,9 @@
+<h1>Debug Database View</h1>
+<ul>
+    {% for item in data %}
+    <li>{{ item.title }}: <strong>{{ item.url }}</strong> (Raw: {{ item.raw_url_val }})</li>
+    {% endfor %}
+</ul>
+{% if error %}
+<p style="color:red;">Error: {{ error }}</p>
+{% endif %}

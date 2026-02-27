@@ -4,6 +4,20 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .models import Project, Skill, Experience, Education, ProfileLink, Certification, Achievement, ContactMessage
 
+def debug_view(request):
+    try:
+        certs = Certification.objects.all()
+        data = []
+        for c in certs:
+            data.append({
+                'title': c.title,
+                'url': c.credential_url if hasattr(c, 'credential_url') else 'No URL field',
+                'raw_url_val': getattr(c, 'credential_url', 'Attribute Missing')
+            })
+        return render(request, 'portfolio/debug.html', {'data': data})
+    except Exception as e:
+        return render(request, 'portfolio/debug.html', {'error': str(e)})
+
 def index(request):
     if request.method == 'POST':
         name = request.POST.get('name')
