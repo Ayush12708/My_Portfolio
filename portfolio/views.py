@@ -4,24 +4,6 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .models import Project, Skill, Experience, Education, ProfileLink, Certification, Achievement, ContactMessage
 
-from django.http import HttpResponse
-from django.conf import settings
-import os
-
-def debug_view(request):
-    try:
-        static_files = os.listdir(settings.STATIC_ROOT)
-    except Exception as e:
-        static_files = str(e)
-    
-    content = f"""
-    DEBUG: {settings.DEBUG}
-    STATIC_ROOT: {settings.STATIC_ROOT}
-    BASE_DIR: {settings.BASE_DIR}
-    Files in STATIC_ROOT: {static_files}
-    """
-    return HttpResponse(content, content_type="text/plain")
-
 def index(request):
     if request.method == 'POST':
         name = request.POST.get('name')
