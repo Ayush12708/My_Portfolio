@@ -16,7 +16,7 @@
         },
         {
             "src": "/media/(.*)",
-            "dest": "/portfolio/projects/$1"
+            "dest": "/portfolio/$1"
         },
         {
             "src": "/(.*)",

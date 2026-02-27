@@ -41,19 +41,19 @@ Education.objects.create(
 ProfileLink.objects.create(
     name='Email',
     url='mailto:kumarayush12708@gmail.com',
-    icon_class='email'
+    icon_class='fas fa-envelope'
 )
 
 ProfileLink.objects.create(
     name='GitHub',
     url='https://github.com/Ayush12708',
-    icon_class='github'
+    icon_class='fab fa-github'
 )
 
 ProfileLink.objects.create(
     name='LinkedIn',
-    url='https://linkedin.com/in/ayush-kumar', # Assuming standard format, user can update in admin
-    icon_class='linkedin'
+    url='https://www.linkedin.com/in/ayush-kumar-67097b283/',
+    icon_class='fab fa-linkedin'
 )
 
 print('Database successfully populated with Education and Links details!')
