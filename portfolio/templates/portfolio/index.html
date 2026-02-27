@@ -1,0 +1,224 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayush Kumar | Software Engineer</title>
+    <link rel="stylesheet" href="{% static 'portfolio/style.css' %}?v=1.1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <header>
+        <a href="#" class="logo">Ayush Kumar</a>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#education">Education</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <section id="about" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Hi, I'm <span>Ayush Kumar</span></h1>
+                <p>I build robust cloud architectures, dynamic web applications, and scalable backend systems using
+                    Python,
+                    Django, and AWS.</p>
+
+                <div class="hero-links" style="margin-bottom: 2rem; display: flex; gap: 1rem; align-items: center;">
+                    {% for link in links %}
+                    <a href="{{ link.url }}" target="_blank" class="link-item"
+                        style="color: var(--text-primary); text-decoration: none; font-weight: 600; border: 1px solid var(--border-color); padding: 8px 20px; border-radius: 20px; transition: 0.3s; display: flex; align-items: center; gap: 8px;">
+                        {% if link.icon_class %}<i class="{{ link.icon_class }}"></i>{% endif %} {{ link.name }}
+                    </a>
+                    {% endfor %}
+                    <a href="https://drive.google.com/file/d/1stFPg3CVz1QUDlDwyo8vyoOGeNjzXlH2/view?usp=sharing"
+                        target="_blank" class="link-item"
+                        style="color: var(--accent-color); text-decoration: none; font-weight: 800; border: 1px solid var(--accent-color); padding: 8px 20px; border-radius: 20px; transition: 0.3s; box-shadow: 0 0 10px rgba(88, 166, 255, 0.2); display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-file-pdf"></i> Resume
+                    </a>
+                </div>
+
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+            </div>
+            <div class="hero-image-container">
+                <img src="https://github.com/Ayush12708.png" alt="Ayush Kumar" class="profile-pic">
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title">My Technical Engine</h2>
+        <div class="skills-container">
+
+            <div class="skill-category">
+                <h3>Backend & Core</h3>
+                {% for skill in backend_skills %}
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>{{ skill.name }}</span>
+                        <span>{{ skill.proficiency }}%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: {{ skill.proficiency }}%"></div>
+                    </div>
+                </div>
+                {% empty %}
+                <p>No backend skills added yet.</p>
+                {% endfor %}
+            </div>
+
+            <div class="skill-category">
+                <h3>Frontend</h3>
+                {% for skill in frontend_skills %}
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>{{ skill.name }}</span>
+                        <span>{{ skill.proficiency }}%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: {{ skill.proficiency }}%"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="skill-category">
+                <h3>Cloud & Tools</h3>
+                {% for skill in tools_skills %}
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span>{{ skill.name }}</span>
+                        <span>{{ skill.proficiency }}%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: {{ skill.proficiency }}%"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            {% for project in projects %}
+            <div class="project-card">
+                {% if project.image %}
+                <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image">
+                {% else %}
+                <div class="project-image"
+                    style="background: #222; display: flex; align-items: center; justify-content: center;">No Image
+                </div>
+                {% endif %}
+                <div class="project-content">
+                    <h3 class="project-title">{{ project.title }}</h3>
+                    <div class="project-tech">{{ project.technologies }}</div>
+                    <p class="project-desc">{{ project.description|truncatewords:20 }}</p>
+                    <div class="project-links">
+                        {% if project.github_link %}
+                        <a href="{{ project.github_link }}" target="_blank">GitHub &rarr;</a>
+                        {% endif %}
+                        {% if project.live_link %}
+                        <a href="{{ project.live_link }}" target="_blank">Live App &rarr;</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p>No projects added yet.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+
+    <section id="certifications">
+        <h2 class="section-title">Certifications</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+            {% for cert in certifications %}
+            <div
+                style="background: var(--card-bg); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                <h3 style="color: #fff; margin-bottom: 0.5rem;">{{ cert.title }}</h3>
+                <p style="color: var(--accent-color); font-weight: 600;">{{ cert.issuer }}</p>
+                {% if cert.date_issued %}
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">Issued: {{ cert.date_issued|date:"M Y" }}
+                </p>
+                {% endif %}
+            </div>
+            {% empty %}
+            <p>No certifications added yet.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="achievements">
+        <h2 class="section-title">Achievements & Activities</h2>
+        <div class="timeline">
+            {% for achievement in achievements %}
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    {% if achievement.date %}
+                    <div class="timeline-date">{{ achievement.date|date:"M Y" }}</div>
+                    {% endif %}
+                    <h3>{{ achievement.title }}</h3>
+                    <h4 style="color: var(--text-secondary); margin-bottom: 1rem;">{{ achievement.organization }}</h4>
+                    <p>{{ achievement.description|linebreaks }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <p>No achievements added yet.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="timeline">
+            {% for edu in educations %}
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">{{ edu.start_date|date:"Y" }} - {{ edu.end_date|date:"Y" }}</div>
+                    <h3>{{ edu.degree }}</h3>
+                    <h4 style="color: var(--text-secondary); margin-bottom: 1rem;">{{ edu.institution }}</h4>
+                    {% if edu.score %}
+                    <p style="font-weight: 600; color: var(--accent-color);">{{ edu.score }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <p>No education entries added yet.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+
+
+
+    <footer style="padding: 3rem 5%; text-align: center; border-top: 1px solid var(--border-color); margin-top: 3rem;">
+        <h2 style="color: #fff; margin-bottom: 1.5rem;">Let's Connect</h2>
+        <div style="display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2rem; align-items: center;">
+            {% for link in links %}
+            <a href="{{ link.url }}" target="_blank"
+                style="color: var(--accent-color); text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: 0.3s; display: flex; align-items: center; gap: 8px;">
+                {% if link.icon_class %}<i class="{{ link.icon_class }}"></i>{% endif %} {{ link.name }}
+            </a>
+            {% endfor %}
+        </div>
+        <p style="color: var(--text-secondary);">&copy; 2026 Ayush Kumar. Built with Django & AWS.</p>
+    </footer>
+
+</body>
+
+</html>
