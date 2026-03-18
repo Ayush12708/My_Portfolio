@@ -239,9 +239,11 @@
         <h2>Let's Connect</h2>
         <div class="footer-links">
             {% for link in links %}
+            {% if "HackerRank" not in link.name %}
             <a href="{{ link.url }}" target="_blank">
                 {% if link.icon_class %}<i class="{{ link.icon_class }}"></i>{% endif %} {{ link.name }}
             </a>
+            {% endif %}
             {% endfor %}
         </div>
         <p>&copy; 2026 Ayush Kumar. Built with Django & AWS.</p>
