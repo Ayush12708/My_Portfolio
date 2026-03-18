@@ -617,14 +617,16 @@ footer h2 {
 
 /* New Skill Grid Layout */
 .skill-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1.5rem;
     max-width: 1000px;
     margin: 0 auto 3rem auto;
 }
 
 .skill-box {
+    flex: 0 0 160px;
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 8px;
