@@ -83,6 +83,25 @@ nav a::after {
     transition: width 0.3s ease;
 }
 
+.nav-btn {
+    border: 1px solid var(--accent-color);
+    padding: 8px 18px !important;
+    border-radius: 20px;
+    color: var(--accent-color) !important;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.nav-btn:hover {
+    background: var(--accent-color);
+    color: #000 !important;
+    box-shadow: 0 5px 15px rgba(0, 245, 212, 0.3);
+}
+
+.nav-btn::after {
+    display: none;
+}
+
 nav a:hover::after {
     width: 100%;
 }
