@@ -96,3 +96,16 @@ class ContactMessage(models.Model):
 
     def __str__(self):
         return f"Message from {self.name} - {self.email}"
+
+class UserProfile(models.Model):
+    first_name = models.CharField(max_length=100, default="AYUSH")
+    last_name = models.CharField(max_length=100, default="KUMAR")
+    title_prefix = models.CharField(max_length=200, default="A Cloud")
+    title_suffix = models.CharField(max_length=200, default="Developer<br>Engineer")
+    about_text = models.TextField(default="I build robust cloud architectures, dynamic web applications, and scalable backend systems using Python, Django, and AWS.")
+    profile_image = models.ImageField(upload_to='portfolio/profile/', blank=True, null=True)
+    github_image_url = models.URLField(blank=True, null=True, help_text="Fallback image URL (e.g., https://github.com/Ayush12708.png)")
+    resume_link = models.URLField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name} Profile"

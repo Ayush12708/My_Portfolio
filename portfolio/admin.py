@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Skill, Experience, Education, ProfileLink, Certification, Achievement
+from .models import Project, Skill, Experience, Education, ProfileLink, Certification, Achievement, UserProfile
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
@@ -30,3 +30,8 @@ class CertificationAdmin(admin.ModelAdmin):
 @admin.register(Achievement)
 class AchievementAdmin(admin.ModelAdmin):
     list_display = ('title', 'organization', 'date')
+
+@admin.register(UserProfile)
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ('first_name', 'last_name', 'title_prefix')
+

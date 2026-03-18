@@ -8,38 +8,44 @@ django.setup()
 
 from portfolio.models import Certification, Achievement
 
-# Clear existing data for a clean slate
-Certification.objects.all().delete()
-Achievement.objects.all().delete()
+# NOTE: Uses get_or_create - will NOT overwrite existing admin entries.
 
-# Populate Certifications
-Certification.objects.create(
+# Populate Certifications (only if not already present)
+Certification.objects.get_or_create(
     title='Java',
-    issuer='HackerRank',
-    date_issued=date(2025, 11, 1),
-    credential_url='https://www.hackerrank.com/certificates/ayush_java'
+    defaults={
+        'issuer': 'HackerRank',
+        'date_issued': date(2025, 11, 1),
+        'credential_url': ''
+    }
 )
 
-Certification.objects.create(
+Certification.objects.get_or_create(
     title='Fundamentals of Network Communication',
-    issuer='Coursera',
-    date_issued=date(2024, 9, 1),
-    credential_url='https://www.coursera.org/verify/network-comm'
+    defaults={
+        'issuer': 'Coursera',
+        'date_issued': date(2024, 9, 1),
+        'credential_url': ''
+    }
 )
 
-Certification.objects.create(
+Certification.objects.get_or_create(
     title='Legacy Responsive Web Design V8',
-    issuer='freeCodeCamp',
-    date_issued=date(2023, 9, 1),
-    credential_url='https://www.freecodecamp.org/certification/ayush/responsive-web-design'
+    defaults={
+        'issuer': 'freeCodeCamp',
+        'date_issued': date(2023, 9, 1),
+        'credential_url': ''
+    }
 )
 
-# Populate Achievements
-Achievement.objects.create(
+# Populate Achievements (only if not already present)
+Achievement.objects.get_or_create(
     title='Participated in "Code Off Duty" Web Hackathon (2024)',
-    organization='Coding Wise',
-    description='Demonstrated exceptional creativity, teamwork, and innovation in developing web-based solutions during a 2-day competitive hackathon.',
-    date=date(2024, 3, 1)
+    defaults={
+        'organization': 'Coding Wise',
+        'description': 'Demonstrated exceptional creativity, teamwork, and innovation in developing web-based solutions during a 2-day competitive hackathon.',
+        'date': date(2024, 3, 1)
+    }
 )
 
-print('Database successfully populated with Certifications and Achievements!')
+print('Database population complete (existing entries preserved)!')

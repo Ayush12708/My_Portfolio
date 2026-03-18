@@ -17,6 +17,17 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
+# ---------------------------------------------------------------------------
+# SESSION SECURITY
+# ---------------------------------------------------------------------------
+# Session cookie is deleted when the browser is closed (not persistent)
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+# Even if the browser stays open, expire after 1 hour of inactivity
+SESSION_COOKIE_AGE = 3600  # seconds
+# Refresh the expiry countdown on every request so active users don't get
+# logged out mid-session
+SESSION_SAVE_EVERY_REQUEST = True
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 

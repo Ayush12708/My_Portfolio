@@ -11,6 +11,9 @@
 </head>
 
 <body>
+    <!-- Glowing Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
 
     <header>
         <a href="#" class="logo">Ayush Kumar</a>
@@ -30,20 +33,24 @@
     <section id="about" class="hero">
         <div class="hero-container">
             <div class="hero-content">
-                <h1>Hi, I'm <span>Ayush Kumar</span></h1>
-                <p>I build robust cloud architectures, dynamic web applications, and scalable backend systems using
-                    Python,
-                    Django, and AWS.</p>
+                <div class="hero-intro">
+                    <h2>Hello! I'm</h2>
+                    <h1>{{ profile.first_name|default:"AYUSH"|upper }}<br><span>{{ profile.last_name|default:"KUMAR"|upper }}</span></h1>
+                </div>
+                <div class="hero-info">
+                    <h3>{{ profile.title_prefix|default:"A Cloud" }}</h3>
+                    <h2>{{ profile.title_suffix|default:"Developer<br>Engineer"|safe }}</h2>
+                    <p>{{ profile.about_text|default:"I build robust cloud architectures, dynamic web applications, and scalable backend systems using Python, Django, and AWS." }}</p>
+                </div>
 
-                <div class="hero-links"
-                    style="margin-bottom: 2rem; display: flex; gap: 1rem; align-items: center; position: relative; z-index: 10;">
+                <div class="hero-links">
                     {% for link in links %}
                     <a href="{{ link.url }}" target="_blank" class="link-item"
                         style="color: var(--text-primary); text-decoration: none; font-weight: 600; border: 1px solid var(--border-color); padding: 8px 20px; border-radius: 20px; transition: 0.3s; display: flex; align-items: center; gap: 8px;">
                         {% if link.icon_class %}<i class="{{ link.icon_class }}"></i>{% endif %} {{ link.name }}
                     </a>
                     {% endfor %}
-                    <a href="https://drive.google.com/file/d/1stFPg3CVz1QUDlDwyo8vyoOGeNjzXlH2/view?usp=sharing"
+                    <a href="{{ profile.resume_link|default:'https://drive.google.com/file/d/1stFPg3CVz1QUDlDwyo8vyoOGeNjzXlH2/view?usp=sharing' }}"
                         target="_blank" class="link-item"
                         style="color: var(--accent-color); text-decoration: none; font-weight: 800; border: 1px solid var(--accent-color); padding: 8px 20px; border-radius: 20px; transition: 0.3s; box-shadow: 0 0 10px rgba(88, 166, 255, 0.2); display: flex; align-items: center; gap: 8px;">
                         <i class="fas fa-file-pdf"></i> Resume
@@ -54,7 +61,13 @@
             </div>
             <div class="hero-image-container">
                 <a href="https://github.com/Ayush12708" target="_blank" title="Visit my GitHub Profile">
+                    {% if profile and profile.profile_image %}
+                    <img src="{{ profile.profile_image.url }}" alt="{{ profile.first_name }} {{ profile.last_name }}" class="profile-pic">
+                    {% elif profile and profile.github_image_url %}
+                    <img src="{{ profile.github_image_url }}" alt="{{ profile.first_name }} {{ profile.last_name }}" class="profile-pic">
+                    {% else %}
                     <img src="https://github.com/Ayush12708.png" alt="Ayush Kumar" class="profile-pic">
+                    {% endif %}
                 </a>
             </div>
         </div>
@@ -149,16 +162,14 @@
 
     <section id="certifications">
         <h2 class="section-title">Certifications</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+        <div class="cert-grid">
             {% for cert in certifications %}
-            <div
-                style="background: var(--card-bg); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color); position: relative; transition: 0.3s; height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+            <div class="cert-card">
                 <div>
-                    <h3 style="color: #fff; margin-bottom: 0.5rem;">{{ cert.title }}</h3>
-                    <p style="color: var(--accent-color); font-weight: 600;">{{ cert.issuer }}</p>
+                    <h3>{{ cert.title }}</h3>
+                    <p class="issuer">{{ cert.issuer }}</p>
                     {% if cert.date_issued %}
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Issued: {{ cert.date_issued|date:"M Y"
-                        }}
+                    <p class="date">Issued: {{ cert.date_issued|date:"M Y" }}
                     </p>
                     {% endif %}
                 </div>
@@ -224,17 +235,16 @@
 
 
 
-    <footer style="padding: 3rem 5%; text-align: center; border-top: 1px solid var(--border-color); margin-top: 3rem;">
-        <h2 style="color: #fff; margin-bottom: 1.5rem;">Let's Connect</h2>
-        <div style="display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2rem; align-items: center;">
+    <footer>
+        <h2>Let's Connect</h2>
+        <div class="footer-links">
             {% for link in links %}
-            <a href="{{ link.url }}" target="_blank"
-                style="color: var(--accent-color); text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: 0.3s; display: flex; align-items: center; gap: 8px;">
+            <a href="{{ link.url }}" target="_blank">
                 {% if link.icon_class %}<i class="{{ link.icon_class }}"></i>{% endif %} {{ link.name }}
             </a>
             {% endfor %}
         </div>
-        <p style="color: var(--text-secondary);">&copy; 2026 Ayush Kumar. Built with Django & AWS.</p>
+        <p>&copy; 2026 Ayush Kumar. Built with Django & AWS.</p>
     </footer>
 
 </body>
