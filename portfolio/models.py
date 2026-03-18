@@ -109,7 +109,8 @@ class UserProfile(models.Model):
     about_text = models.TextField(default="I build robust cloud architectures, dynamic web applications, and scalable backend systems using Python, Django, and AWS.")
     profile_image = models.ImageField(upload_to='portfolio/profile/', blank=True, null=True)
     github_image_url = models.URLField(blank=True, null=True, help_text="Fallback image URL (e.g., https://github.com/Ayush12708.png)")
-    resume_link = models.URLField(blank=True, null=True)
+    resume_link = models.URLField(blank=True, null=True, help_text="Use this for external links like Google Drive.")
+    resume_file = models.FileField(upload_to='portfolio/resumes/', blank=True, null=True, help_text="Upload your actual PDF resume here to host it directly on the site.")
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} Profile"
