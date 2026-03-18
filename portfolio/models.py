@@ -64,6 +64,8 @@ class Certification(models.Model):
     issuer = models.CharField(max_length=200)
     date_issued = models.DateField(blank=True, null=True)
     credential_url = models.URLField(blank=True, null=True)
+    image = models.ImageField(upload_to='portfolio/certifications/', blank=True, null=True)
+    image_url = models.URLField(blank=True, null=True, help_text="Optional fallback image URL")
 
     class Meta:
         ordering = ['-date_issued']
