@@ -46,13 +46,13 @@
                 <div class="hero-links">
                     {% for link in links %}
                     <a href="{{ link.url }}" target="_blank" class="link-item"
-                        style="color: var(--text-primary); text-decoration: none; font-weight: 600; border: 1px solid var(--border-color); padding: 8px 20px; border-radius: 20px; transition: 0.3s; display: flex; align-items: center; gap: 8px;">
+                        style="color: var(--text-primary); text-decoration: none; font-weight: 600; font-size: 0.85rem; border: 1px solid var(--border-color); padding: 8px 12px; border-radius: 20px; transition: 0.3s; display: flex; align-items: center; gap: 6px;">
                         {% if link.icon_class %}<i class="{{ link.icon_class }}"></i>{% endif %} {{ link.name }}
                     </a>
                     {% endfor %}
                     <a href="{{ profile.resume_link|default:'https://drive.google.com/file/d/1stFPg3CVz1QUDlDwyo8vyoOGeNjzXlH2/view?usp=sharing' }}"
                         target="_blank" class="link-item"
-                        style="color: var(--accent-color); text-decoration: none; font-weight: 800; border: 1px solid var(--accent-color); padding: 8px 20px; border-radius: 20px; transition: 0.3s; box-shadow: 0 0 10px rgba(88, 166, 255, 0.2); display: flex; align-items: center; gap: 8px;">
+                        style="color: var(--accent-color); text-decoration: none; font-weight: 800; font-size: 0.85rem; border: 1px solid var(--accent-color); padding: 8px 12px; border-radius: 20px; transition: 0.3s; box-shadow: 0 0 10px rgba(88, 166, 255, 0.2); display: flex; align-items: center; gap: 6px;">
                         <i class="fas fa-file-pdf"></i> Resume
                     </a>
                 </div>
