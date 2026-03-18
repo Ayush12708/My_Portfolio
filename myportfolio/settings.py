@@ -41,7 +41,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-47-@$!jr-0w3o+@t%%)bfmdrv$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ['*', '.onrender.com'] # '*' allows local and any, specific for render
+ALLOWED_HOSTS = ['*', '.onrender.com', '.vercel.app'] # '*' allows local and any, specific for render and vercel
 
 
 # Application definition
