@@ -615,6 +615,52 @@ footer h2 {
     box-shadow: 0 5px 15px var(--accent-glow);
 }
 
+/* New Skill Grid Layout */
+.skill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto 3rem auto;
+}
+
+.skill-box {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.skill-box i {
+    font-size: 2.5rem;
+    color: #ffffff;
+    transition: color 0.3s;
+}
+
+.skill-box p {
+    color: #ffffff;
+    margin: 0;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.skill-box:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 5px 15px rgba(0, 245, 212, 0.2);
+    transform: translateY(-5px);
+}
+
+.skill-box:hover i {
+    color: var(--accent-color);
+}
+
 /* Certificates Grid */
 .cert-grid {
     display: grid;

@@ -18,9 +18,11 @@ class Skill(models.Model):
         ('frontend', 'Frontend'),
         ('backend', 'Backend'),
         ('tools', 'Tools & DevOps'),
+        ('soft', 'Soft Skills'),
     )
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='backend')
     proficiency = models.IntegerField(default=50, help_text="Percentage out of 100")
+    icon_class = models.CharField(max_length=100, blank=True, null=True, help_text="FontAwesome class (e.g., fab fa-python)")
 
     def __str__(self):
         return f"{self.name} ({self.get_category_display()})"

@@ -51,6 +51,7 @@ def index(request):
     backend_skills = Skill.objects.filter(category='backend').order_by('-proficiency')
     frontend_skills = Skill.objects.filter(category='frontend').order_by('-proficiency')
     tools_skills = Skill.objects.filter(category='tools').order_by('-proficiency')
+    soft_skills = Skill.objects.filter(category='soft').order_by('-proficiency')
     experiences = Experience.objects.all()
     educations = Education.objects.all()
     links = ProfileLink.objects.all()
@@ -63,6 +64,7 @@ def index(request):
         'backend_skills': backend_skills,
         'frontend_skills': frontend_skills,
         'tools_skills': tools_skills,
+        'soft_skills': soft_skills,
         'experiences': experiences,
         'educations': educations,
         'links': links,

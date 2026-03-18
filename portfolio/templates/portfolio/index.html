@@ -81,56 +81,38 @@
     </section>
 
     <section id="skills">
-        <h2 class="section-title">My Technical Engine</h2>
-        <div class="skills-container">
+        <h2 class="section-title">My Skills</h2>
 
-            <div class="skill-category">
-                <h3>Backend & Core</h3>
-                {% for skill in backend_skills %}
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span>{{ skill.name }}</span>
-                        <span>{{ skill.proficiency }}%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: {{ skill.proficiency }}%"></div>
-                    </div>
-                </div>
-                {% empty %}
-                <p>No backend skills added yet.</p>
-                {% endfor %}
+        <h3 class="subsection-title" style="text-align: center; color: var(--accent-color); margin-bottom: 2rem;">Technical Skills</h3>
+        <div class="skill-grid">
+            {% for skill in backend_skills %}
+            <div class="skill-box">
+                <i class="{{ skill.icon_class|default:'fas fa-code' }}"></i>
+                <p>{{ skill.name }}</p>
             </div>
-
-            <div class="skill-category">
-                <h3>Frontend</h3>
-                {% for skill in frontend_skills %}
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span>{{ skill.name }}</span>
-                        <span>{{ skill.proficiency }}%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: {{ skill.proficiency }}%"></div>
-                    </div>
-                </div>
-                {% endfor %}
+            {% endfor %}
+            {% for skill in frontend_skills %}
+            <div class="skill-box">
+                <i class="{{ skill.icon_class|default:'fas fa-code' }}"></i>
+                <p>{{ skill.name }}</p>
             </div>
-
-            <div class="skill-category">
-                <h3>Cloud & Tools</h3>
-                {% for skill in tools_skills %}
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span>{{ skill.name }}</span>
-                        <span>{{ skill.proficiency }}%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: {{ skill.proficiency }}%"></div>
-                    </div>
-                </div>
-                {% endfor %}
+            {% endfor %}
+            {% for skill in tools_skills %}
+            <div class="skill-box">
+                <i class="{{ skill.icon_class|default:'fas fa-cogs' }}"></i>
+                <p>{{ skill.name }}</p>
             </div>
+            {% endfor %}
+        </div>
 
+        <h3 class="subsection-title" style="text-align: center; color: var(--accent-color); margin: 3rem 0 2rem;">Soft Skills</h3>
+        <div class="skill-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+            {% for skill in soft_skills %}
+            <div class="skill-box">
+                <i class="{{ skill.icon_class|default:'fas fa-star' }}"></i>
+                <p>{{ skill.name }}</p>
+            </div>
+            {% endfor %}
         </div>
     </section>
 
