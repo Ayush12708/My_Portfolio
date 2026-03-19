@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
-from .models import Project, Skill, Experience, Education, ProfileLink, Certification, Achievement, ContactMessage, UserProfile
+from .models import Project, Skill, Experience, Education, ProfileLink, Certification, Achievement, ContactMessage, UserProfile, Training
 
 def debug_view(request):
     try:
@@ -57,6 +57,7 @@ def index(request):
     links = ProfileLink.objects.all()
     certifications = Certification.objects.all()
     achievements = Achievement.objects.all()
+    trainings = Training.objects.all()
     profile = UserProfile.objects.first()
 
     context = {
@@ -70,6 +71,7 @@ def index(request):
         'links': links,
         'certifications': certifications,
         'achievements': achievements,
+        'trainings': trainings,
         'profile': profile,
     }
     return render(request, 'portfolio/index.html', context)

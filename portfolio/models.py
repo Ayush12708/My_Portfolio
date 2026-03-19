@@ -88,6 +88,20 @@ class Achievement(models.Model):
     def __str__(self):
         return self.title
 
+class Training(models.Model):
+    title = models.CharField(max_length=200)
+    organization = models.CharField(max_length=200)
+    description = models.TextField()
+    start_date = models.DateField()
+    end_date = models.DateField(blank=True, null=True)
+    certificate_url = models.URLField(blank=True, null=True)
+
+    class Meta:
+        ordering = ['-start_date']
+
+    def __str__(self):
+        return f"{self.title} at {self.organization}"
+
 class ContactMessage(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()

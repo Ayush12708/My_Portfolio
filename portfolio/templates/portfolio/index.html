@@ -22,6 +22,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#training">Training</a></li>
                 <li><a href="#certifications">Certifications</a></li>
                 <li><a href="#achievements">Achievements</a></li>
                 <li><a href="#education">Education</a></li>
@@ -144,6 +145,37 @@
             </div>
             {% empty %}
             <p>No projects added yet.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+
+    <!-- Training Section -->
+    <section id="training">
+        <h2 class="section-title">Training & Industrial Experience</h2>
+        <div class="training-grid">
+            {% for training in trainings %}
+            <div class="training-card">
+                <div class="training-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <div class="training-body">
+                    <div class="training-date">
+                        <i class="fas fa-calendar-alt"></i>
+                        {{ training.start_date|date:"M Y" }}{% if training.end_date %} &ndash; {{ training.end_date|date:"M Y" }}{% endif %}
+                    </div>
+                    <h3 class="training-title">{{ training.title }}</h3>
+                    <h4 class="training-org"><i class="fas fa-building"></i> {{ training.organization }}</h4>
+                    <div class="training-desc">{{ training.description|linebreaks }}</div>
+                    {% if training.certificate_url %}
+                    <a href="{{ training.certificate_url }}" target="_blank" class="training-cert-link">
+                        <i class="fas fa-certificate"></i> View Certificate &rarr;
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <p>No training entries added yet.</p>
             {% endfor %}
         </div>
     </section>
