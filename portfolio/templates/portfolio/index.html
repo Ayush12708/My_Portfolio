@@ -74,11 +74,16 @@
         </div>
     </section>
 
-    <section id="about-me" style="max-width: 900px; margin: 5rem auto; text-align: center; padding: 0 2rem;">
+    <section id="about-me" class="about-me-section">
         <h2 class="section-title">About Me</h2>
-        <p style="color: var(--text-secondary); font-size: 1.15rem; line-height: 1.9;">
-            I am a passionate Cloud Developer and Engineer with a strong focus on designing and deploying scalable, secure infrastructure on Amazon Web Services (AWS). My technical journey revolves around cloud computing, modern architectures, and optimizing deployments. Whether it's architecting a secure Role-Based file management system like BASTION across AWS EC2 and S3, or continuously expanding my cloud expertise through rigorous certifications, I thrive on solving complex structural challenges and building resilient, high-availability environments.
-        </p>
+        <div class="about-me-card">
+            <div class="about-me-icon">
+                <i class="fas fa-quote-left"></i>
+            </div>
+            <p class="about-me-text">
+                I am a passionate <strong>Cloud Developer and Engineer</strong> with a strong focus on designing and deploying scalable, secure infrastructure on <strong>Amazon Web Services (AWS)</strong>. My technical journey revolves around cloud computing, modern architectures, and optimizing deployments. Whether it's architecting a secure Role-Based file management system like <em>BASTION</em> across AWS EC2 and S3, or continuously expanding my cloud expertise through rigorous certifications, I thrive on solving complex structural challenges and building resilient, high-availability environments.
+            </p>
+        </div>
     </section>
 
     <section id="skills">
@@ -275,6 +280,37 @@
         <p>&copy; 2026 Ayush Kumar. Built with Django & AWS.</p>
     </footer>
 
+    <!-- Floating Theme Toggle Button -->
+    <button id="theme-toggle" class="theme-float-btn">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const htmlElement = document.documentElement;
+            // Get user's saved preference, check system preference if no saved preference
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const currentTheme = localStorage.getItem('theme') || (prefersDark ? 'dark' : 'light');
+            
+            htmlElement.setAttribute('data-theme', currentTheme);
+            themeToggleBtn.innerHTML = currentTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+
+            themeToggleBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                let theme = htmlElement.getAttribute('data-theme');
+                if (theme === 'dark') {
+                    htmlElement.setAttribute('data-theme', 'light');
+                    localStorage.setItem('theme', 'light');
+                    themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+                } else {
+                    htmlElement.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                    themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
